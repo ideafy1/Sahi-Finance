@@ -17,6 +17,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  // Aggressively preload all news images for ultra-fast loading
+  React.useEffect(() => {
+    const urls = [
+      "https://github.com/ideafy1/Sahi-Finance/blob/main/public/images/stock-exchange.jpg?raw=true",
+      "https://github.com/ideafy1/Sahi-Finance/blob/main/public/images/rbi-building.jpg?raw=true",
+      "https://github.com/ideafy1/Sahi-Finance/blob/main/public/images/tech-stocks.jpg?raw=true",
+      "https://github.com/ideafy1/Sahi-Finance/blob/main/public/images/rupee-dollar.jpg?raw=true",
+      "https://github.com/ideafy1/Sahi-Finance/blob/main/public/images/tax-reform.jpg?raw=true"
+    ];
+    urls.forEach(url => {
+      const img = new window.Image();
+      img.src = url;
+    });
+  }, []);
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
